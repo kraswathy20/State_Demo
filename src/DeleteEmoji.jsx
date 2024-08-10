@@ -3,7 +3,7 @@ import {v4 as uuid} from 'uuid'
 
 export default function DeleteEmoji(){
     function randEmoji(){
-        const choices = ["😂","🤢","😴","😌","🧞‍♂️","🤪","🥳","😭","😏","🤩","😘","🥰"]
+        const choices = ["😂","🤢","😴","😌","🧞‍♂️","🤪","🥳","😭","😏","🤩","😘","🥰","❤"]
         return choices[Math.floor(Math.random() * choices.length)]
     }
 
@@ -17,6 +17,16 @@ export default function DeleteEmoji(){
         return (em.id !== id)
      }))
     }
+    const makeHeart = () =>{
+        setEmoji((emjis) => emjis.map((e)=>{
+            if(e.emoji !== "❤"){
+                return {...e,emoji:"💜"}
+            }
+            else{
+                return emjis
+            }
+        }))
+    }
 
     return (                                                                                                                                                                                                   
         <div>
@@ -25,6 +35,7 @@ export default function DeleteEmoji(){
             ))}
             
             <button onClick={handleEmoji} >Add Emoji</button>
+            <button onClick={makeHeart}>Make to heart</button>
         </div>
     )
 }
